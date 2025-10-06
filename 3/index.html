@@ -25,8 +25,8 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ studentNumber: id })
                 }).then(r=>r.json());
-                if(info.status!=200) throw new Error("网络错误");
                 if(info.code=="0000004") alert("别乱打字！");
+                if(info.code!="200") throw new Error("网络错误");
                 else{
                     const UserNameMap=await fetch("UserNameMap.json").then(r=>{
                         if(r.status!=200) throw new Error("网络错误");
