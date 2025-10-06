@@ -28,7 +28,8 @@
                 if(info.status!=200) throw new Error("网络错误");
                 if(info.code=="0000004") alert("别乱打字！");
                 else{
-                    const UserNameMap=await fetch("UserNameMap.json").then(r=>r.json()).catch(()=>({}));
+                    const UserNameMap=await fetch("UserNameMap.json").then(r=>r.json());
+                    if(UserNameMap.status!=200) throw new Error("网络错误");
                     if(id in UserNameMap) alert(`你好，${UserNameMap[id]}。`);
                     else if(info.body.name==null) alert("诶，你好像被封号了？哈哈哈哈哈🤣");
                     else alert(`你好，${info.body.name}。`);
