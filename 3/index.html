@@ -25,6 +25,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ studentNumber: id })
                 }).then(r=>r.json());
+                if(info.status!=200) throw new Error("网络错误");
                 if(info.code=="0000004") alert("别乱打字！");
                 else{
                     const UserNameMap=await fetch("UserNameMap.json").then(r=>r.json()).catch(()=>({}));
@@ -36,6 +37,6 @@
         </script>
     </head>
     <body>
-        <img src="https://gpo.saobby.com/i/LYQuRQIjQOmz0qa5.jpg" onclick="a()"></img>
+        <img src="https://gpo.saobby.com/i/LYQuRQIjQOmz0qa5.jpg" onclick='a().catch((e)=>alert(e.message+"\n请重试"))'></img>
     </body>
 </html>
